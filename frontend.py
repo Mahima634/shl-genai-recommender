@@ -9,7 +9,7 @@ st.write("Enter a Job Description or Skill to find the best SHL test.")
 query = st.text_area("What are you looking for?", "e.g. Python Developer with 2 years experience")
 
 if st.button("Recommend Assessments"):
-    # Aapka Ngrok link yahan aayega
+    
     api_url = "https://diedra-impeccable-doria.ngrok-free.dev/recommend"
     
     try:
@@ -26,3 +26,4 @@ if st.button("Recommend Assessments"):
             st.warning("No matches found.")
     except:
         st.error("API is not responding. Make sure Ngrok/Flask is running!")
+
