@@ -10,7 +10,7 @@ query = st.text_area("What are you looking for?", "e.g. Python Developer with 2 
 
 if st.button("Recommend Assessments"):
     
-    api_url = "https://diedra-impeccable-doria.ngrok-free.dev/recommend"
+    api_url =  "https://diedra-impeccable-doria.ngrok-free.dev"
     
     try:
         response = requests.post(api_url, json={"query": query})
@@ -26,4 +26,5 @@ if st.button("Recommend Assessments"):
             st.warning("No matches found.")
     except:
         st.error("API is not responding. Make sure Ngrok/Flask is running!")
+
 
