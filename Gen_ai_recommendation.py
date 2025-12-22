@@ -4,14 +4,13 @@ import re
 
 def clean_string(text):
     if pd.isna(text): return ""
-    # Sab kuch lowercase aur saare spaces/special characters hata do matching ke liye
     return re.sub(r'[^a-z0-9]', '', str(text).lower())
 
 def get_slug(url):
     if pd.isna(url): return ""
     return str(url).strip().lower().split('/')[-1].split('?')[0].replace('-4261', '')
 
-print("🚀 SHL Recommendation Engine: Zero-Fail Mode")
+print("SHL Recommendation Engine: Zero-Fail Mode")
 
 # 1. LOAD DATA
 catalog = pd.read_csv("shl_catalog_unique.csv", encoding='latin1')
@@ -56,9 +55,7 @@ def get_recommendations_aggressive(query, top_k=5):
     temp_df = catalog.copy()
     temp_df['score'] = scores
     
-    # --- FALLBACK ---
-    # Agar kisi ka score 0 nahi hai, toh top match dikhao
-    # Agar sabka score 0 hai, toh random ki jagah "General Ability" ya generic tests do
+
     if temp_df['score'].max() == 0:
         # Technical keywords search for fallback
         if 'python' in query_compressed or 'sql' in query_compressed:
@@ -69,7 +66,7 @@ def get_recommendations_aggressive(query, top_k=5):
     return temp_df.sort_values(by=['score', 'assessment_name'], ascending=[False, True]).head(top_k)
 
 # 3. GENERATE TEST PREDICTIONS
-print("\n🧪 Updating 'test_predictions_final.csv'...")
+print("\n Updating 'test_predictions_final.csv'...")
 results = []
 for _, row in test.iterrows():
     q = row["Query"]
@@ -83,4 +80,5 @@ for _, row in test.iterrows():
         })
 
 pd.DataFrame(results).to_csv("test_predictions_final_1.csv", index=False)
-print("📂 SUCCESS! File updated. Ab check kijiye, 'Account Manager' gayab ho gaya hoga.")
+print("SUCCESS! File updated.")
+
