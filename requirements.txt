@@ -1,2 +1,7 @@
 streamlit
 requests
+flask
+sentence-transformers
+beautifulsoup4
+pandas
+scikit-learn
